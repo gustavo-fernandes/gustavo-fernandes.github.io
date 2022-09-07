@@ -1,0 +1,18 @@
+<div class="container">
+    <section class="p-4 shadow bg-white rounded my-3">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="h4 text-success"><i class="fas fa-university"></i> Cursos</h1>
+            </div>
+            <div>
+                <a class="btn btn-lg btn-primary" routerLink="cadastro"><i class="fas fa-plus me-1"></i>
+                    Cadastrar</a>
+            </div>
+        </div>
+        <p>Selecione o curso desejado:</p>
+        <div class="list-group">
+            <a routerLink="/curso" *ngFor="let curso of listaCursos" class="list-group-item list-group-item-action">
+                {{curso.nome}}</a>
+        </div>
+    </section>
+</div>

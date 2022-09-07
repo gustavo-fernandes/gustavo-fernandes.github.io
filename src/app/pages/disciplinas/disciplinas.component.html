@@ -1,0 +1,11 @@
+<div class="container">
+    <section class="p-4 shadow bg-white rounded">
+        <h1 class="h4 text-success"><i class="fas fa-university"></i> {{titulo}}</h1>
+        <p>Selecione o curso desejado:</p>
+        <div class="list-group">
+            <a routerLink="/disciplinas" *ngFor="let disciplina of disciplinas"
+                class="list-group-item list-group-item-action">
+                {{disciplina.nome}}</a>
+        </div>
+    </section>
+</div>

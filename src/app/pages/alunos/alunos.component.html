@@ -1,0 +1,70 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-3">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/curso">Cursos</a></li>
+            <li class="breadcrumb-item">Tecnologia da Informação</li>
+
+            <li class="breadcrumb-item active" aria-current="page">Alunos</li>
+        </ol>
+    </nav>
+    <section class="p-4 shadow bg-white rounded">
+        <h1 class="h5 text-success">Alunos</h1>
+        <div class="shadow p-3 rounded">
+            <table class="table table-striped mb-4">
+                <thead>
+                    <tr>
+                        <th>
+                            Matrícula
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Nascimento
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let aluno of alunos">
+                        <td>{{aluno.matricula}}</td>
+                        <td>{{aluno.nome}}</td>
+                        <td>{{aluno.nascimento}}</td>
+                        <td class="text-end">
+                            <button (click)="openPopup(aluno)" class="btn btn-sm btn-primary">Notas</button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="bg-light p-2 rounded border text-muted mt-2">
+            Exibindo {{alunos.length}} registros
+        </div>
+    </section>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{popup.nome}} | Matrícula: #{{popup.matricula}}</h4>
+            </div>
+            <div class="modal-body">
+                <p><i class="far fa-calendar-alt text-success"></i> Nascimento: {{popup.nascimento}}</p>
+                <p>Notas:</p>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item" *ngFor="let notas of popup.notas">{{notas}}</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show" [ngStyle]="{'display':displayStyle}"></div>

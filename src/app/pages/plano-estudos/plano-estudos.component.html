@@ -1,0 +1,84 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-3">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item">Cursos</li>
+
+            <li class="breadcrumb-item active" aria-current="page">Tecnologia da Informação</li>
+        </ol>
+    </nav>
+    <section class="p-4 shadow bg-white rounded">
+        <h1 class="h5 text-success"><i class="fas fa-university"></i> Curso: Tecnologia da Informação -
+            {{listaSemestres.length}} semestres</h1>
+        <div class="shadow p-3 rounded" *ngFor="let sem of listaSemestres; index as i">
+
+            <div class="p-2 bg-secondary text-light border rounded-top">
+                <strong>Semestre {{i+1}}/{{listaSemestres.length}}</strong>
+            </div>
+
+            <table class="table table-striped mb-4">
+                <tbody>
+                    <tr *ngFor="let disciplina of sem.disciplinas">
+                        <td>{{disciplina}}</td>
+                        <td class="text-end">
+                            <a routerLink="/editar" class="btn btn-sm btn-primary">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="bg-light">
+                        <th scope="row">Professor(a)</th>
+                        <td class="text-end align-middle">{{sem.professor.nome}}
+                            <button (click)="openPopup(sem.professor)" class="btn btn-sm btn-outline-success"><i
+                                    class="fas fa-user-circle"></i> ver
+                                professor
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="bg-light">
+                        <th scope="row">Alunos</th>
+                        <td class="text-end align-middle">
+                            <a routerLink="/alunos" class="btn btn-sm btn-outline-success"><i
+                                    class="fas fa-user-graduate"></i> ver {{sem.alunos}}
+                                alunos
+                            </a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ver professor(a)</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <img [src]="popup.imagem" [alt]="popup.nome" class="img-fluid rounded border shadow-sm p-2">
+                    </div>
+                    <div class="col-md-6">
+                        <p> <i class="fas fa-user text-success me-1"></i> Nome:
+                            {{popup.nome}} </p>
+                        <p> <i class="far fa-calendar-alt text-success me-1"></i> Nascimento:
+                            {{popup.nascimento}} </p>
+                        <p> <i class="fas fa-euro-sign text-success me-1"></i> Salário:
+                            {{popup.salario}} </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show" [ngStyle]="{'display':displayStyle}"></div>

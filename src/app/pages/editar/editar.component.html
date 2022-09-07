@@ -1,0 +1,18 @@
+<div class="container">
+    <section class="p-4 shadow bg-white rounded my-3">
+        <h1 class="h4 text-success">Editar</h1>
+        <div class="alert alert-danger" [hidden]="alert" role="alert">
+            Ocorreu um erro ao atualizar. Tente novamente!
+        </div>
+        <p>Preencha os dados abaixo:</p>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Campo 1</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Campo 2</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button (click)="alert = !alert" class="btn btn-sm btn-primary">Cadastrar</button>
+    </section>
+</div>
